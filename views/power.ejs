@@ -1,0 +1,129 @@
+<html>
+
+    <head>
+      
+        <style>
+            body{
+                text-align: center;
+                align-content: center;
+                align-self: center;
+                align-items: center;
+                padding-left: 15%;
+                background-color: #a9f1d2;
+                
+            }
+            .hari{
+                  background-color:white; 
+                  width: 1000px;
+                  height: 800px;
+                  border: 5px solid rgb(125, 177, 198);
+                  border-radius: 8px;
+                  padding: 15px;
+                  overflow-y: scroll;
+                  text-align: center;
+                  align-content: center;
+                  align-self: center;
+                  align-items: center;
+            }
+            .add {
+                  border: 3px solid rgb(94, 69, 69);
+                  background-color: skyblue;
+                  border-radius: 6px;
+                  padding: 10px;
+                  display: grid;
+                  gap: 4px;
+                  margin-bottom: 1%;
+                  text-decoration-color: #fff;
+                  color: #fff;
+            }
+            li{
+                  list-style-type: none;
+            }
+            .list{
+                  background-color: teal;
+                  border: 5px solid palegreen;
+                  border-radius: 8px;
+                  padding-left: 2px;
+                  text-align: center;
+                  align-content: center;
+                  align-self: center;
+                  align-items: center;
+            }
+            .data {
+                  border: 3px solid teal;
+                  background-color: steelblue;
+                  border-radius: 6px;
+                  padding: 10px;
+                  display: grid;
+                  gap: 4px;
+                  margin-bottom: 1%;
+                  text-decoration-color: #fff;
+                  color:tomato;
+            }
+            #ic{
+                  font-size: 20px;
+                  cursor: pointer;
+                  user-select: none;
+                  color: darkblue;
+            }
+            h1 {
+                  text-align: center;
+                  color: darkblue;
+            }
+            h1 span {
+                  background-color: #43d9cf;
+            }
+
+        </style>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/9d5d80b9e2.js" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body>
+        <div class = "hari" >
+            <h1 style="background-color:teal; color: #fff;"><i class="fa-solid fa-rectangle-list" style="background-color: red;"></i> TODO App </h1>
+            <div class = "data">
+                <form action="/data" method="post">
+                    <h1>
+                        <span> Adding a new Task </span>
+                    </h1>
+                    <label for="description" style="color:tomato; font-size: large;">DESCRIPTION : </label>
+                    <input type="text" name="description" placeholder="What do you want to do?" required style="background-color: antiquewhite; font-size: large;"><br><br>
+                    <label for="category" style="color: tomato; font-size: large;">CATEGORY : </label>
+                        <select name="category" id="category" style="background-color: antiquewhite; font-size: large;">
+                        <option value="personal">personal</option>
+                        <option value="work">work</option>
+                        <option value="school">school</option>
+                        <option value="cleaning">cleaning</option>
+                        <option value="other">other</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="date" style="color: tomato; font-size: large;">DUE-DATE : </label>
+                    <input type="date" name="duedate" placeholder="duedate"  style="background-color: antiquewhite; font-size: large;"><br><br>
+                    <button type="submit" style="background-color:aqua; font-size:large;">Add Task</button>
+                </form>
+            </div>
+                
+                <ul>
+                    <div class="list">
+                        <h1 style="background-color: cornflowerblue; color: darkgreen;">Your Tasks</h1>
+                        <% for(let i of tasks){%>
+                            <div class = "add">
+                                <li>
+                                    <div style="font-size: large;"><i class="fa-brands fa-stack-exchange"></i>&nbsp;&nbsp;&nbsp;Description :- <div style="color: darkmagenta;display: inline; font-size: large;"><%= i.description %></div></div><br>
+                                    <div style="font-size: large;">Category :- <div style="color: darkmagenta;display: inline; font-size: large;"><%= i.category %></div> </div><br> 
+                                    <div style="font-size: large;">Due Date :- <div style="color: darkmagenta;display: inline; font-size: large;"><%= i.duedate == ""? i.duedate.value = "No Deadline":i.duedate %></div> </div><br> 
+                                    
+                                    <div>
+                                    <input style="width: 20px; height: 20px;" type="checkbox" id="text1" name="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/delete/?id=<%=i._id%>"><i style = "font-size: large;"class="fa-sharp fa-solid fa-trash fa-shake"></i></a>
+                                </li>
+                            </div>
+                            <%}%>
+                    </div>  
+                </ul>
+            </div>
+        </div>
+    </body>
+
+</html>
